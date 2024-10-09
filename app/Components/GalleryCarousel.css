@@ -1,0 +1,43 @@
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+  
+.slick-slide>div>div{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.modalImg{
+  max-width: 60vh;
+}
+
+@media (max-width:600px){
+  .slick-slide>div>div{
+    max-width: 80%;
+  }
+  .modalImg{
+    max-width: 30vh;
+  }
+  .modalLink{
+    width: 29vh;
+  }
+  .slick-slide>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blurred {
+  filter: grayscale(100%) blur(5px);
+  opacity: 0.5;
+}
+
+.no-scroll {
+  overflow: hidden !important; /* Use !important to ensure it takes precedence */
+}
+
+@font-face {
+  font-family: "Helvetica Neue,sans-serif";
+  src: url("/fonts/HelveticaNeueLight.otf") format("truetype");
+  /* Add other font properties as needed */
+}
+* {
+  font-family: "Helvetica Neue,sans-serif";
+}
+/* Vertical scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* color of the thumb */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Horizontal scrollbar */
+::-webkit-scrollbar-horizontal {
+  height: 2px;
+
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  height: 3px;
+  background-color: #d0d0d0; /* color of the thumb */
+  border-radius: 3px; /* roundness of the thumb */
+}
+
+::-webkit-scrollbar-track:horizontal {
+  background: #f1f1f1; /* color of the track */
+}

@@ -1,0 +1,45 @@
+name: Next Js Build
+
+
+on: 
+    push:
+        branches: ["main"]
+    pull_request: 
+        branches: ["main"]
+
+env:
+    CI: false
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v3
+        - name: Install Dependencies
+          run : npm install
+
+        - name : Building
+          run: npm run build
+
+        - name: Generate PEM File
+          run: echo "$PEM" >> Maharaja.pem && chmod 400 Maharaja.pem
+          env:
+            run: echo ${{secrets.PEM}}
+            PEM: ${{secrets.PEM}}
+
+
+        - name: Copy build folder contents to AWS
+          run: sudo scp -o StrictHostKeyChecking=no -i Maharaja.pem -r .next/* ec2-15-207-178-146.ap-south-1.compute.amazonaws.com:~/maharaja
+        
+        - name: Doing the magic now
+          run: sudo ssh -i Maharaja.pem ec2-15-207-178-146.ap-south-1.compute.amazonaws.com "sudo rm -r /home/maharaja && sudo cp -r maharaja/ /home/maharaja && sudo systemctl restart nginx"
+        
+        - name: LIVE!!!
+          run: echo "Site is live🚀🚀🚀"
+
+
+        
+
+
